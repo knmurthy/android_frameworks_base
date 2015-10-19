@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <!--  Copyright (C) 2014-2016 The Dirty Unicorns Project
 
   This program is free software: you can redistribute it and/or modify
@@ -22,5 +23,8 @@
 
     <!-- Double tap anywhere in lockscreen makes the device go to sleep -->
     <bool name="config_doubletap_lockscreen_sleep">true</bool>
+
+    <!-- Show voice assist affordance on Keyguard -->
+    <bool name="config_keyguardShowVoiceAssistAffordance">true</bool>
 
 </resources>
