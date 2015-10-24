@@ -3925,6 +3925,12 @@ public final class Settings {
          */
         public static final String CUSTOM_CARRIER_LABEL = "custom_carrier_label";
 
+         /**
+         * Whether to show low battery notification
+         * @hide
+         */
+        public static final String BATTERY_LOW_NOTIFICATION = "battery_low_notification";
+
         /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
