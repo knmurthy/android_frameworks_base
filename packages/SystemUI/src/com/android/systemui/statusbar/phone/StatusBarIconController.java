@@ -81,8 +81,8 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
 
     private BatteryMeterView mBatteryMeterView;
     private BatteryMeterView mBatteryMeterViewKeyguard;
-    private TextView mClock;
-    private TextView mCenterClock;
+    private Clock mClock;
+    private Clock mCenterClock;
     private boolean mShowClock;
     private int mClockLocation;
     private LinearLayout mCenterClockLayout;
@@ -144,14 +144,17 @@ public class StatusBarIconController extends StatusBarIconList implements Tunabl
         mBatteryMeterViewKeyguard = (BatteryMeterView) keyguardStatusBar.findViewById(R.id.battery);
         scaleBatteryMeterViews(context);
 
-        mClock = (TextView) statusBar.findViewById(R.id.clock);
+        mClock = (Clock) statusBar.findViewById(R.id.clock);
         mCenterClockLayout = (LinearLayout)statusBar.findViewById(R.id.center_clock_layout);
-        mCenterClock = (TextView) statusBar.findViewById(R.id.center_clock);
+        mCenterClock = (Clock) statusBar.findViewById(R.id.center_clock);
         mNetworkTraffic = (NetworkTraffic) statusBar.findViewById(R.id.networkTraffic);
         mDarkModeIconColorSingleTone = context.getColor(R.color.dark_mode_icon_color_single_tone);
         mLightModeIconColorSingleTone = context.getColor(R.color.light_mode_icon_color_single_tone);
         mHandler = new Handler();
         loadDimens();
+
+        mClock.setStatusBarIconController(this);
+        mCenterClock.setStatusBarIconController(this);
 
         TunerService.get(mContext).addTunable(this, ICON_BLACKLIST);
     }
