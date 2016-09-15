@@ -3692,6 +3692,11 @@ public final class Settings {
          */
         public static final String REMOVE_TILE_SUMMARY = "remove_tile_summary";
 
+         /**
+         * Disable dashboard conditions in settings
+         * @hide
+         */
+        public static final String DISABLE_DASHBOARD_CONDITIONS = "disable_dashboard_conditions";
 
         /**
          * Change volume up and down handlign based on rotation
