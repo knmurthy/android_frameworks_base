@@ -2224,6 +2224,9 @@ message MetricsEvent {
     // Screenshot QS
     QS_SCREENSHOT = 412;
 
+    // Reboot QS
+    QS_REBOOT = 413;
+
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
 
