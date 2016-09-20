@@ -41,11 +41,8 @@
   <!-- Vendor warning -->
   <java-symbol type="string" name="system_error_vendorprint" />
 
-  <!-- Automatic brightness enhancements -->
-  <java-symbol type="integer" name="config_autoBrightnessBrighteningLightFastDebounce"/>
-
-  <!-- Notification icon/text dynamic tint -->
-  <java-symbol type="bool" name="config_allowNotificationIconTextTinting" />
+    <!-- Automatic brightness enhancements -->
+    <java-symbol type="integer" name="config_autoBrightnessBrighteningLightFastDebounce"/>
 
   <!-- kill app long press back -->
   <java-symbol type="string" name="app_killed_message" />
