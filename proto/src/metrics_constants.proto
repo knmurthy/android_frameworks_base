@@ -2227,6 +2227,9 @@ message MetricsEvent {
     // Reboot QS
     QS_REBOOT = 413;
 
+    // Sync QS
+    QS_SYNC = 414;
+
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
 
