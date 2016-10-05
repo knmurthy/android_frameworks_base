@@ -5408,6 +5408,12 @@ public final class Settings {
         public static final String PULSE_LAVALAMP_SOLID_SPEED = "lava_lamp_solid_speed";
 
         /**
+         * Count of small QS tiles.
+         * @hide
+         */
+        public static final String QQS_COUNT = "sysui_qqs_count";
+
+        /**
          * A flag containing settings used for biometric weak
          * @hide
          */
