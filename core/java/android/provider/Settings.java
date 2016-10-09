@@ -3914,6 +3914,12 @@ public final class Settings {
         public static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
 
         /**
+         * Statusbar Beltz logo
+         * @hide
+         */
+        public static final String STATUS_BAR_BELTZ_LOGO = "status_bar_beltz_logo";
+
+        /**
          * custom carrier label. The value is
          * String.
          */
