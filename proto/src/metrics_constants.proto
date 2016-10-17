@@ -2230,6 +2230,9 @@ message MetricsEvent {
     // Sync QS
     QS_SYNC = 414;
 
+    // Navigation QS
+    QS_NAVBAR = 415;
+
     // Add new aosp constants above this line.
     // END OF AOSP CONSTANTS
 
