@@ -534,6 +534,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 updateQSRowsColumnsLandscape();
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_SHOW_CARRIER))) {
+                    updateSettings();
                     updateCarrier();
             }
             updateSettings();
