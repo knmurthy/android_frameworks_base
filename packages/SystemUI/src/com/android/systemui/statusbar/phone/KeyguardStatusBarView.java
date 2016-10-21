@@ -32,6 +32,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.systemui.BatteryLevelTextView;
 import com.android.systemui.BatteryMeterView;
 import com.android.systemui.Interpolators;
 import com.android.systemui.R;
@@ -41,17 +42,12 @@ import com.android.systemui.statusbar.policy.KeyguardUserSwitcher;
 import com.android.systemui.statusbar.policy.UserInfoController;
 import com.android.systemui.statusbar.policy.UserSwitcherController;
 
-import java.text.NumberFormat;
-
 /**
  * The header group on Keyguard.
  */
-public class KeyguardStatusBarView extends RelativeLayout
-        implements BatteryController.BatteryStateChangeCallback {
+public class KeyguardStatusBarView extends RelativeLayout {
 
-    private boolean mBatteryCharging;
     private boolean mKeyguardUserSwitcherShowing;
-    private boolean mBatteryListening;
 
     private int mShowCarrierLabel;
 
@@ -59,7 +55,7 @@ public class KeyguardStatusBarView extends RelativeLayout
     private View mSystemIconsSuperContainer;
     private MultiUserSwitch mMultiUserSwitch;
     private ImageView mMultiUserAvatar;
-    private TextView mBatteryLevel;
+    private BatteryLevelTextView mBatteryLevel;
 
     private BatteryController mBatteryController;
     private KeyguardUserSwitcher mKeyguardUserSwitcher;
@@ -91,7 +87,7 @@ public class KeyguardStatusBarView extends RelativeLayout
         mSystemIconsContainer = findViewById(R.id.system_icons_container);
         mMultiUserSwitch = (MultiUserSwitch) findViewById(R.id.multi_user_switch);
         mMultiUserAvatar = (ImageView) findViewById(R.id.multi_user_avatar);
-        mBatteryLevel = (TextView) findViewById(R.id.battery_level);
+        mBatteryLevel = (BatteryLevelTextView) findViewById(R.id.battery_level);
         mCarrierLabel = (TextView) findViewById(R.id.keyguard_carrier_text);
         loadDimens();
         updateUserSwitcher();
@@ -170,7 +166,7 @@ public class KeyguardStatusBarView extends RelativeLayout
         } else if (mMultiUserSwitch.getParent() == this && mKeyguardUserSwitcherShowing) {
             removeView(mMultiUserSwitch);
         }
-        mBatteryLevel.setVisibility(mBatteryCharging ? View.VISIBLE : View.GONE);
+        mBatteryLevel.setVisibility(View.VISIBLE);
 
         if (mCarrierLabel != null) {
             if (mShowCarrierLabel == 1) {
@@ -193,18 +189,6 @@ public class KeyguardStatusBarView extends RelativeLayout
         }
     }
 
-    public void setListening(boolean listening) {
-        if (listening == mBatteryListening) {
-            return;
-        }
-        mBatteryListening = listening;
-        if (mBatteryListening) {
-            mBatteryController.addStateChangedCallback(this);
-        } else {
-            mBatteryController.removeStateChangedCallback(this);
-        }
-    }
-
     private void updateUserSwitcher() {
         boolean keyguardSwitcherAvailable = mKeyguardUserSwitcher != null;
         mMultiUserSwitch.setClickable(keyguardSwitcherAvailable);
@@ -215,6 +199,7 @@ public class KeyguardStatusBarView extends RelativeLayout
     public void setBatteryController(BatteryController batteryController) {
         mBatteryController = batteryController;
         ((BatteryMeterView) findViewById(R.id.battery)).setBatteryController(batteryController);
+        mBatteryLevel.setBatteryController(batteryController);
     }
 
     public void setUserSwitcherController(UserSwitcherController controller) {
@@ -232,22 +217,6 @@ public class KeyguardStatusBarView extends RelativeLayout
 
     public void setQSPanel(QSPanel qsp) {
         mMultiUserSwitch.setQsPanel(qsp);
-    }
-
-    @Override
-    public void onBatteryLevelChanged(int level, boolean pluggedIn, boolean charging) {
-        String percentage = NumberFormat.getPercentInstance().format((double) level / 100.0);
-        mBatteryLevel.setText(percentage);
-        boolean changed = mBatteryCharging != charging;
-        mBatteryCharging = charging;
-        if (changed) {
-            updateVisibilities();
-        }
-    }
-
-    @Override
-    public void onPowerSaveChanged(boolean isPowerSave) {
-        // could not care less
     }
 
     public void setKeyguardUserSwitcher(KeyguardUserSwitcher keyguardUserSwitcher) {
