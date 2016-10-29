@@ -3913,6 +3913,12 @@ public final class Settings {
          */
         public static final String LOCK_CLOCK_FONTS = "lock_clock_fonts";
 
+         /**
+         * Whether to disable ripple on lockscreen pin entry
+         * @hide
+         */
+        public static final String LOCKSCREEN_PIN_RIPPLE = "lockscreen_pin_ripple";
+
         /**
          * Statusbar Beltz logo
          * @hide
