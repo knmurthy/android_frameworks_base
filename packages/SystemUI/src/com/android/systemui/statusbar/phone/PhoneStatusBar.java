@@ -519,6 +519,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.BATTERY_SAVER_MODE_COLOR),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.QS_LAYOUT_COLUMNS),
+                    false, this, UserHandle.USER_ALL);
            updateSettings();
         }
 
@@ -531,6 +534,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.BATTERY_SAVER_MODE_COLOR))) {
                 updateWarningColor();
+            } else if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QS_LAYOUT_COLUMNS))) {
+                updateQS();
             }
             updateSettings();
         }
@@ -2347,6 +2353,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mBatterySaverWarningColor = mContext.getResources()
                    .getColor(com.android.internal.R.color.battery_saver_mode_color);
          }
+    }
+
+    private void updateQS() {
+        if (mHeader != null) {
+            mHeader.updateSettings();
+        }
     }
 
     protected int adjustDisableFlags(int state) {
