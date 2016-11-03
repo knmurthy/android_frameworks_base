@@ -207,6 +207,14 @@ public class QSCustomizer extends LinearLayout implements OnMenuItemClickListene
                 Settings.System.putInt(mContext.getContentResolver(),
                         Settings.System.QS_LAYOUT_COLUMNS, 5);
                 break;
+            case R.id.menu_item_columns_six:
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.QS_LAYOUT_COLUMNS, 6);
+                break;
+            case R.id.menu_item_columns_seven:
+                Settings.System.putInt(mContext.getContentResolver(),
+                        Settings.System.QS_LAYOUT_COLUMNS, 7);
+                break;
             }
         return false;
     }
