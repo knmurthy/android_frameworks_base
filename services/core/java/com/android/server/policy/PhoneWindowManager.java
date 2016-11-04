@@ -1399,10 +1399,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mScreenshotChordVolumeDownKeyConsumed = true;
                 cancelPendingPowerKeyAction();
                 if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-                    mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
-                } else {
+                    Settings.System.SCREENSHOT_TYPE, 1) == 0) {
                     mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
+                } else {
+                    mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
                 }
                 mHandler.postDelayed(mScreenshotRunnable, getScreenshotChordLongPressDelay());
             }
@@ -3357,7 +3357,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (down && repeatCount == 0) {
                 int type = (event.isShiftPressed() ||
                     Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.SCREENSHOT_TYPE, 0) == 1) ?
+                    Settings.System.SCREENSHOT_TYPE, 1) == 0) ?
                     TAKE_SCREENSHOT_SELECTED_REGION : TAKE_SCREENSHOT_FULLSCREEN;
                 mScreenshotRunnable.setScreenshotType(type);
                 mHandler.post(mScreenshotRunnable);
@@ -3410,9 +3410,9 @@ public class PhoneWindowManager implements WindowManagerPolicy {
             if (down && repeatCount == 0) {
                 if (Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-                    mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
-                } else {
                     mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_SELECTED_REGION);
+                } else {
+                    mScreenshotRunnable.setScreenshotType(TAKE_SCREENSHOT_FULLSCREEN);
                 }
                 mHandler.post(mScreenshotRunnable);
             }
