@@ -3598,6 +3598,12 @@ public final class Settings {
          */
         public static final String LOCKSCREEN_MEDIA_METADATA = "lockscreen_media_metadata";
 
+         /**
+         * Whether to allow fullscreen screenshots or let the user select which area to screenshot
+         *
+         */
+        public static final String SCREENSHOT_TYPE = "screenshot_type";
+
 	/**
          * Whether the phone volume up / down effect should be played
          * @hide
