@@ -1452,26 +1452,15 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     };
 
     private class ScreenshotRunnable implements Runnable {
-        private int mScreenshotFullscreen = TAKE_SCREENSHOT_FULLSCREEN;
-        private int mScreenshotSelectedRegion = TAKE_SCREENSHOT_SELECTED_REGION;
+        private int mScreenshotType = TAKE_SCREENSHOT_FULLSCREEN;
 
         public void setScreenshotType(int screenshotType) {
-	    if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-            mScreenshotFullscreen = screenshotType;
-            } else {
-            mScreenshotSelectedRegion = screenshotType;
-            }
+            mScreenshotType = screenshotType;
         }
 
         @Override
         public void run() {
-            if (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-                takeScreenshot(mScreenshotFullscreen);
-            } else {
-                takeScreenshot(mScreenshotSelectedRegion);
-            }
+            takeScreenshot(mScreenshotType);
         }
     }
 
@@ -3366,14 +3355,11 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         } else if (keyCode == KeyEvent.KEYCODE_S && event.isMetaPressed()
                 && event.isCtrlPressed()) {
             if (down && repeatCount == 0) {
-                int selectedregion = TAKE_SCREENSHOT_SELECTED_REGION;
-                int fullscreen = TAKE_SCREENSHOT_FULLSCREEN;
-                if (Settings.System.getInt(mContext.getContentResolver(),
-                    Settings.System.SCREENSHOT_TYPE, 0) == 1) {
-                        mScreenshotRunnable.setScreenshotType(fullscreen);
-                } else {
-                        mScreenshotRunnable.setScreenshotType(selectedregion);
-                }
+                int type = (event.isShiftPressed() ||
+                    Settings.System.getInt(mContext.getContentResolver(),
+                    Settings.System.SCREENSHOT_TYPE, 0) == 1) ?
+                    TAKE_SCREENSHOT_SELECTED_REGION : TAKE_SCREENSHOT_FULLSCREEN;
+                mScreenshotRunnable.setScreenshotType(type);
                 mHandler.post(mScreenshotRunnable);
                 return -1;
             }
