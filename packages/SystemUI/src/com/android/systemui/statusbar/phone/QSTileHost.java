@@ -61,6 +61,7 @@ import com.android.systemui.qs.tiles.SyncTile;
 import com.android.systemui.qs.tiles.UserTile;
 import com.android.systemui.qs.tiles.WifiTile;
 import com.android.systemui.qs.tiles.WorkModeTile;
+import com.android.systemui.qs.tiles.SoundTile;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.BluetoothController;
 import com.android.systemui.statusbar.policy.CastController;
@@ -440,6 +441,7 @@ public class QSTileHost implements QSTile.Host, Tunable {
         else if (tileSpec.equals("saver")) return new DataSaverTile(this);
         else if (tileSpec.equals("caffeine")) return new CaffeineTile(this);
         else if (tileSpec.equals("screenshot")) return new ScreenshotTile(this);
+		else if (tileSpec.equals("sound")) return new SoundTile(this);
         else if (tileSpec.equals("reboot")) return new RebootTile(this);
         else if (tileSpec.equals("sync")) return new SyncTile(this);
         else if (tileSpec.equals("navigation_bar")) return new NavigationBarTile(this);
