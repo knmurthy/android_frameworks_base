@@ -3855,12 +3855,6 @@ public final class Settings {
          */
         public static final String VOLUME_ROCKER_MUSIC_CONTROLS = "volume_rocker_music_controls";
 
-         /**
-         * Quick Settings nougat animation
-         * @hide
-         */
-        public static final String QS_FANCY_ANIMATION = "qs_fancy_animation";
-
         /**
          * Whether to show Brightness Icon On Brightness Slider
          * @hide
